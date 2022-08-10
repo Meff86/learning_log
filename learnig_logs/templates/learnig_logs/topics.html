@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends "learnig_logs/base.html" %}
+
+{% block page_header %}
+  <h1>Разделы</h1>
+{% endblock page_header %}
+
+{% block content %}
+
+
+  <ul>
+    {% for topic in topics %}
+      <li><h3>
+        <a href = "{% url 'learnig_logs:topic' topic.id %}">{{ topic }}</a>
+      </h3></li>
+    {% empty %}
+     <h3><li>Нет постов в этом разделе.</h3></li>
+    {% endfor %}
+  </ul>
+<h3><a href="{% url 'learnig_logs:new_topic' %}">Добавить новый раздел:</a></h3>
+
+{% endblock content %}
+
+</body>
+</html>

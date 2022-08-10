@@ -1,0 +1,13 @@
+{% extends "learnig_logs/base.html" %}
+
+{% block page_header %}
+  <div class="jumbotron">
+    <h1 class="display-3">Отслеживай свой прогресс.</h1>
+
+    <p class="lead">Заведи свой обучающий блог,и создай список разделов о том что ты учишь.
+        Когда ты выучил что-то новое из раздела, сделай выжимку и опубликуй свой пост.</p>
+
+    <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}"
+        role="button">Зарегистрироваться &raquo;</a>
+  </div>
+{% endblock page_header %}

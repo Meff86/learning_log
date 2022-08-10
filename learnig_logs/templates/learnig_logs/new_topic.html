@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends "learnig_logs/base.html" %}
+
+{% block content %}
+<p>Добавьте новый раздел:</p>
+
+<form action="{% url 'learnig_logs:new_topic' %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button name="submit">Добавить раздел</button>
+</form>
+{% endblock content %}
+</body>
+</html>

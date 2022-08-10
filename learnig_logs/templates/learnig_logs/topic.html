@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'learnig_logs/base.html' %}
+
+{% block page_header %}
+<h3>{{ topic }}</h3>
+{% endblock page_header %}
+
+{% block content %}
+
+
+
+  <p>
+    <a href="{% url 'learnig_logs:new_entry' topic.id %}">Добавить новый пост</a>
+  </p>
+  <ul>
+  {% for entry in entries %}
+    <div class="card mb-3">
+      <h4 class="card-header">
+      {{ entry.date_added|date:'M d, Y H:i' }}
+      <small><a href="{% url 'learnig_logs:edit_entry' entry.id %}">Редактировать пост</a></small>
+      </h4>
+      <div class="card-body">
+      {{ entry.text|linebreaks }}
+      </div>
+    </div>
+
+  {% empty %}
+    <p>Нет постов в этом разделе.</p>
+  {% endfor %}
+{% endblock content %}
+</body>
+</html>
+
+
