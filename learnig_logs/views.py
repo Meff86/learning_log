@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
+from django.http import HttpResponseRedirect
+from django.http import HttpResponseNotFound
 
 
 # Create your views here.
@@ -85,3 +87,12 @@ def edit_entry(request, entry_id):
             return redirect('learnig_logs:topic', topic_id=topic.id)
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'learnig_logs/edit_entry.html', context)
+
+@login_required
+def delete_entry(request, entry_id=None):
+    try:
+        entry_to_delete = Entry.objects.get(id=entry_id)
+        entry_to_delete.delete()
+        return HttpResponseRedirect("/topics")
+    except Entry.DoesNotExist:
+        return HttpResponseNotFound("<h2>Person not found</h2>")
