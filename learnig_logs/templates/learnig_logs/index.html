@@ -6,8 +6,11 @@
 
     <p class="lead">Заведи свой обучающий блог,и создай список разделов о том что ты учишь.
         Когда ты выучил что-то новое из раздела, сделай выжимку и опубликуй свой пост.</p>
+    {% if user.is_authenticated %}
 
-    <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}"
+    {% else %}
+      <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}"
         role="button">Зарегистрироваться &raquo;</a>
+    {% endif %}
   </div>
 {% endblock page_header %}
